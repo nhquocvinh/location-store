@@ -1,0 +1,51 @@
+{
+  user: {
+    name: string,
+    avatar: string,
+    authorized: boolean,
+    anonymous: boolean,
+  },
+  locations: {
+    data: [{
+      id: number,
+      street: string,
+      ward: string,
+      district: string,
+      city: string,
+      country: string,
+      latitude: number,
+      longitude: number,
+      author: {
+        name: string,
+      }
+    }, {
+      id: number,
+      street: string,
+      ward: string,
+      district: string,
+      city: string,
+      country: string,
+      latitude: number,
+      longitude: number,
+      author: {
+        name: string,
+      }
+    }],
+    meta: {
+      isFetching: boolean,
+    }
+  },
+  currentLocation: {
+    id: number,
+    street: string,
+    ward: string,
+    district: string,
+    city: string,
+    country: string,
+    latitude: number,
+    longitude: number,
+    author: {
+      name: string
+    }
+  }
+}
