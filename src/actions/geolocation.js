@@ -13,8 +13,9 @@ function setGeolocationError(error) {
     error,
   };
 }
+
 export function getAndSetCurrentGeolocation() {
-  return function (dispatch) {
+  return function(dispatch) {
     return navigator.geolocation.getCurrentPosition(
       ({ coords }) => dispatch(setGeolocation(coords)),
       ({ message }) => dispatch(setGeolocationError(message)), {

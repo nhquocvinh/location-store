@@ -7,6 +7,7 @@ import configureStore from './store/configureStore';
 
 import { setUserName } from './actions/user';
 import { fetchLocations } from './actions/location';
+import { getAndSetCurrentGeolocation } from './actions/geolocation';
 
 import App from './components/App';
 
@@ -14,6 +15,7 @@ import App from './components/App';
 const store = configureStore();
 
 store.dispatch(setUserName('anonymous'));
+store.dispatch(getAndSetCurrentGeolocation());
 store.dispatch(fetchLocations());
 
 ReactDOM.render(

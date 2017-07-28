@@ -23,8 +23,15 @@ export default (state = initalState, action = {}) => {
       });
     case actionTypes.ADD_LOCATION:
       if (state.items.map(item => item.id).includes(action.payload.id)) {
+        const newState = state.items;
+        for (let index = 0; index < newState.length; index += 1) {
+          if (newState[index].id === action.payload.id) {
+            newState[index] = action.payload;
+          }
+        }
+
         return Object.assign({}, state, {
-          items: [...state.items, action.payload],
+          items: [...newState],
         });
       }
       return Object.assign({}, state, {
