@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import './style.css';
+import { Card, Button } from 'semantic-ui-react';
 
 
 export default class Location extends React.PureComponent {
@@ -8,19 +8,19 @@ export default class Location extends React.PureComponent {
     const { location, onDelete, moveDataToEditForm } = this.props;
 
     return (
-      <div className="card">
-        <div className="card-header bg-inverse text-white lead"><strong>{location.country}</strong></div>
-        <div className="card-block">
-          <h6 className="card-subtitle mb-2 lead">{location.city}</h6>
-          <div className="card-text">{location.street}</div>
-          <div className="card-text">{location.ward} - {location.district}</div>
-          <div className="card-btn-group">
-            <a role="button" className="btn btn-info" onClick={() => moveDataToEditForm(location)}><strong>Update</strong></a>
-            &nbsp;
-            <a role="button" className="btn btn-danger" onClick={() => onDelete(location.id)}>Remove</a>
+      <Card>
+        <Card.Content>
+          <Card.Header>{location.country}</Card.Header>
+          <Card.Meta>{location.city}</Card.Meta>
+          <Card.Description>{`${location.street}, ${location.ward} - ${location.district}`}</Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <div>
+            <Button primary color="green" onClick={() => moveDataToEditForm(location)}>Update</Button>
+            <Button secondary color="red" onClick={() => onDelete(location.id)}>Delete</Button>
           </div>
-        </div>
-      </div>
+        </Card.Content>
+      </Card>
     );
   }
 }

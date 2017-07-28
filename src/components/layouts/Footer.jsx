@@ -1,20 +1,14 @@
 import React from 'react';
+import { Header } from 'semantic-ui-react';
 
+const customStyle = {
+  'margin-top': 40,
+};
 
-export default class Content extends React.Component {
-  render() {
-    const currentYear = new Date().getFullYear();
-    const customeStyle = {
-      color: '#fafafa',
-      fontSize: '20px',
-    };
+const Footer = () => (
+  <div className="row" style={customStyle}>
+    <Header as="h3" className="ui secondary inverted red segment center aligned">&copy; {new Date().getFullYear()} Vinh Nguyen</Header>
+  </div>
+);
 
-    return (
-      <footer className="footer">
-        <div className="container">
-          <span style={customeStyle}>&copy; {currentYear} Vinh Nguyen</span>
-        </div>
-      </footer>
-    );
-  }
-}
+export default Footer;

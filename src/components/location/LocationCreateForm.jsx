@@ -3,18 +3,25 @@ import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import validate from './LocationFormValidate';
 import { saveLocation } from '../../actions/location';
+import './LocationStyle.css';
 
 
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <div className={touched && error ? 'form-group has-danger' : 'form-group'}>
-    <label className="form-control-label">
-      {label}
-    </label>
-    <input className={touched && error ? 'form-control form-control-danger' : 'form-control'} {...input} type={type} />
+  <div>
+    <div className={touched && error ? 'error field' : 'field'}>
+      <label>
+        {label}
+      </label>
+      <div className="ui input">
+        <input {...input} type={type} />
+      </div>
+    </div>
     {touched &&
       error &&
-      <div className="form-control-feedback">
-        {error}
+      <div className="ui error message">
+        <div className="content">
+          <p>{error}</p>
+        </div>
       </div>}
   </div>
 );
@@ -22,7 +29,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 let LocationCreateForm = (props) => {
   const { handleSubmit, pristine, submitting, values, reset, initialValues } = props;
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="ui error form" onSubmit={handleSubmit}>
 
       <Field name="street" type="text" component={renderField} label="Street Name" />
       <Field name="country" type="text" component={renderField} label="Country" />
@@ -34,12 +41,14 @@ let LocationCreateForm = (props) => {
       <Field name="longitude" type="hidden" component="input" />
       <Field name="latitude" type="hidden" component="input" />
 
-      <div className="text-center">
+      <div className="location-submit-btn">
         <button
           type="submit"
-          className={pristine || submitting ? 'btn btn-info disabled' : 'btn btn-info'}
+          center
+          aligned
+          className={pristine || submitting ? 'ui teal red button disabled' : 'ui red large button'}
           disabled={pristine || submitting}
-        ><strong>Save this location</strong>
+        ><strong>Save Location</strong>
         </button>
       </div>
     </form>
@@ -54,8 +63,8 @@ LocationCreateForm = reduxForm({
 
 const mapStateToProps = state => ({
   initialValues: {
-    longitude: state.geolocation.position.longitude,
-    latitude: state.geolocation.position.latitude,
+    longitude: state.geolocation.enabled ? state.geolocation.position.longitude : null,
+    latitude: state.geolocation.enabled ? state.geolocation.position.latitude : null,
     street: null,
     country: null,
     city: null,

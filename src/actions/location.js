@@ -41,10 +41,14 @@ export const updateFormModeToEdit = id => ({
   payload: id,
 });
 
+export const resetMetaData = () => ({
+  type: actionTypes.RESET_METADATA,
+});
+
 
 export function receiveLocations(locations) {
   return (dispatch) => {
-    Object.values(locations).forEach(location => dispatch(addLocation(location)));
+    Object.values(locations).forEach(item => dispatch(addLocation(item)));
 
     dispatch(receivedLocations());
   };
@@ -96,15 +100,27 @@ export function saveLocation(location) {
 
 export function updateLocation(location) {
   return (dispatch) => {
-    // Get a key for a new Post.
     const newPostKey = firebase.database().ref().child(FIREBASEURL).push().key;
 
-    // Write the new post's data simultaneously in the posts list and the user's post list.
+    const locationUpdated = {
+      street: location.street || null,
+      ward: location.ward || null,
+      district: location.district || null,
+      city: location.city || null,
+      country: location.country || null,
+
+      longitude: location.longitude || null,
+      latitude: location.latitude || null,
+      id: location.id || null,
+    };
+
     const updates = {};
-    updates[`/${FIREBASEURL}/${newPostKey}`] = location;
+    updates[`/${FIREBASEURL}/${newPostKey}`] = locationUpdated;
     firebase.database().ref().update(updates)
       .then(() => {
         dispatch(editLocation(location));
+        dispatch(reset('locationUpdate'));
+        dispatch(resetMetaData());
       })
       .catch((error) => {
         console.log(`Remove failed: ${error.message}`);

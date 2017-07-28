@@ -22,8 +22,10 @@ export default (state = initalState, action = {}) => {
         isFetching: false,
       });
     case actionTypes.ADD_LOCATION:
-      if (state.items.map(location => location.id).includes(action.payload.id)) {
-        return state;
+      if (state.items.map(item => item.id).includes(action.payload.id)) {
+        return Object.assign({}, state, {
+          items: [...state.items, action.payload],
+        });
       }
       return Object.assign({}, state, {
         items: [...state.items, action.payload],
@@ -57,6 +59,7 @@ export default (state = initalState, action = {}) => {
       });
     case actionTypes.RESET_METADATA:
       return Object.assign({}, state, {
+        itemUpdate: null,
         isFetching: false,
         isCreateMode: true,
         isCreating: false,

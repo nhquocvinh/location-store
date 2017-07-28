@@ -1,0 +1,8 @@
+.banner-wallpaper-layout {
+  margin: 10px 0;
+}
+
+.banner-wallpaper {
+  background: no-repeat 50% 50%;
+  background-size: cover;
+}
