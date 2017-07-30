@@ -16,8 +16,8 @@ export default class Location extends React.PureComponent {
         </Card.Content>
         <Card.Content extra>
           <div>
-            <Button primary color="green" onClick={() => moveDataToEditForm(location)}>Update</Button>
-            <Button secondary color="red" onClick={() => onDelete(location.id)}>Delete</Button>
+            <Button primary onClick={() => moveDataToEditForm(location)}>Update</Button>
+            <Button secondary onClick={() => onDelete(location.id)}>Delete</Button>
           </div>
         </Card.Content>
       </Card>

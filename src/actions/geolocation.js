@@ -14,9 +14,8 @@ function setGeolocationError(error) {
   };
 }
 
-export function getAndSetCurrentGeolocation() {
-  return function(dispatch) {
-    return navigator.geolocation.getCurrentPosition(
+export default function getAndSetCurrentGeolocation() {
+  return dispatch => navigator.geolocation.getCurrentPosition(
       ({ coords }) => dispatch(setGeolocation(coords)),
       ({ message }) => dispatch(setGeolocationError(message)), {
         enableHighAccuracy: true,
@@ -24,5 +23,4 @@ export function getAndSetCurrentGeolocation() {
         maximumAge: 1000,
       },
     );
-  };
 }

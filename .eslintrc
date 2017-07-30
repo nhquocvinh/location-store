@@ -14,5 +14,7 @@
     "jsx-a11y/interactive-supports-focus": 0,
     "react/prop-types": 0,
     "jsx-a11y/label-has-for": 0,
+    "no-nested-ternary": 0,
+    "import/no-mutable-exports": 0
   }
 }

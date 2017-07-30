@@ -7,7 +7,7 @@ import configureStore from './store/configureStore';
 
 import { setUserName } from './actions/user';
 import { fetchLocations } from './actions/location';
-import { getAndSetCurrentGeolocation } from './actions/geolocation';
+import getAndSetCurrentGeolocation from './actions/geolocation';
 
 import App from './components/App';
 

@@ -5,7 +5,7 @@ import Introduction from './layouts/Introduction';
 import Body from './layouts/Body';
 import Footer from './layouts/Footer';
 
-import './app.css';
+import './AppStyle.css';
 
 const App = () => (
   <div>

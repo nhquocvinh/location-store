@@ -2,7 +2,16 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initalState = {
   items: [],
-  itemUpdate: null,
+  itemUpdate: {
+    longitude: null,
+    latitude: null,
+    street: null,
+    country: null,
+    city: null,
+    district: null,
+    ward: null,
+    id: null,
+  },
   isFetching: false,
   isCreateMode: true,
   isUpdateMode: false,
@@ -45,7 +54,7 @@ export default (state = initalState, action = {}) => {
     case actionTypes.SAVE_LOCATION_SUCCESS:
       return Object.assign({}, state, {
         isCreating: false,
-        isCreateMode: true,
+        isCreateMode: false,
       });
     case actionTypes.EDIT_LOCATION:
       return Object.assign({}, state, {
@@ -62,11 +71,60 @@ export default (state = initalState, action = {}) => {
       return Object.assign({}, state, {
         isUpdateMode: true,
         isCreateMode: false,
-        itemUpdate: action.payload,
+        itemUpdate: Object.assign({}, state.itemUpdate, {
+          longitude: action.payload.longitude,
+          latitude: action.payload.latitude,
+          street: action.payload.street,
+          country: action.payload.country,
+          city: action.payload.city,
+          district: action.payload.district,
+          ward: action.payload.ward,
+          id: action.payload.id,
+        }),
+      });
+    case actionTypes.UPDATE_POSITION_ON_MAP:
+      return Object.assign({}, state, {
+        itemUpdate: Object.assign({}, state.itemUpdate, {
+          longitude: action.payload.longitude,
+          latitude: action.payload.latitude,
+          street: action.payload.street,
+          country: action.payload.country,
+          city: action.payload.city,
+          district: action.payload.district,
+          ward: action.payload.ward,
+          id: action.payload.id,
+        }),
+      });
+    case actionTypes.OPEN_CREATE_FORM:
+      return Object.assign({}, state, {
+        itemUpdate: Object.assign({}, state.itemUpdate, {
+          longitude: null,
+          latitude: null,
+          street: null,
+          country: null,
+          city: null,
+          district: null,
+          ward: null,
+          id: null,
+        }),
+        isFetching: false,
+        isCreateMode: true,
+        isCreating: false,
+        isUpdateMode: false,
+        isDeleted: false,
       });
     case actionTypes.RESET_METADATA:
       return Object.assign({}, state, {
-        itemUpdate: null,
+        itemUpdate: Object.assign({}, state.itemUpdate, {
+          longitude: null,
+          latitude: null,
+          street: null,
+          country: null,
+          city: null,
+          district: null,
+          ward: null,
+          id: null,
+        }),
         isFetching: false,
         isCreateMode: true,
         isCreating: false,

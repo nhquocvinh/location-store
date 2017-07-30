@@ -4,9 +4,9 @@ const About = () => {
   const title = 'About Page';
 
   return (
-    <div>
+    <div className="ui container huge">
       <h1>{title}</h1>
-      <p>This is about page</p>
+      <p>...</p>
     </div>
   );
 };

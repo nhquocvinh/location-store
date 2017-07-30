@@ -41,6 +41,10 @@ export const updateFormModeToEdit = id => ({
   payload: id,
 });
 
+export const openCreateForm = () => ({
+  type: actionTypes.OPEN_CREATE_FORM,
+});
+
 export const resetMetaData = () => ({
   type: actionTypes.RESET_METADATA,
 });
@@ -92,11 +96,17 @@ export function saveLocation(location) {
         dispatch(addLocation(locationSaved));
         dispatch(saveLocationSuccess());
         dispatch(reset('locationCreate'));
+        dispatch(resetMetaData());
       }).catch(() => {
         console.log('Synchronization failed');
       });
   };
 }
+
+export const updateLocationOnMap = location => ({
+  type: actionTypes.UPDATE_POSITION_ON_MAP,
+  payload: location,
+});
 
 export function updateLocation(location) {
   return (dispatch) => {

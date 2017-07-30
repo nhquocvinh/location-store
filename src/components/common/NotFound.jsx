@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NotFound = () => {
-  const title = '404';
+  const title = 'Page Not Found';
 
   return (
     <div>

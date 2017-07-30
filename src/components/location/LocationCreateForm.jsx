@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { Icon } from 'semantic-ui-react';
 import validate from './LocationFormValidate';
 import { saveLocation } from '../../actions/location';
 import './LocationStyle.css';
@@ -27,7 +28,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 );
 
 let LocationCreateForm = (props) => {
-  const { handleSubmit, pristine, submitting, values, reset, initialValues } = props;
+  const { handleSubmit, pristine, submitting } = props;
   return (
     <form className="ui error form" onSubmit={handleSubmit}>
 
@@ -48,7 +49,8 @@ let LocationCreateForm = (props) => {
           aligned
           className={pristine || submitting ? 'ui teal red button disabled' : 'ui red large button'}
           disabled={pristine || submitting}
-        ><strong>Save Location</strong>
+        >{pristine || submitting ? <Icon name="dont" /> : null}
+          <strong> Save Location</strong>
         </button>
       </div>
     </form>
@@ -63,8 +65,8 @@ LocationCreateForm = reduxForm({
 
 const mapStateToProps = state => ({
   initialValues: {
-    longitude: state.geolocation.enabled ? state.geolocation.position.longitude : null,
-    latitude: state.geolocation.enabled ? state.geolocation.position.latitude : null,
+    longitude: state.geolocation.longitude,
+    latitude: state.geolocation.latitude,
     street: null,
     country: null,
     city: null,

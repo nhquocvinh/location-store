@@ -7,7 +7,7 @@ const customStyle = {
 
 const Footer = () => (
   <div className="row" style={customStyle}>
-    <Header as="h3" className="ui secondary inverted red segment center aligned">&copy; {new Date().getFullYear()} Vinh Nguyen</Header>
+    <Header as="h3" className="ui secondary inverted red segment center aligned no-border-radius">&copy; {new Date().getFullYear()} Vinh Nguyen</Header>
   </div>
 );
 
