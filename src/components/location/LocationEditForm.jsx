@@ -27,7 +27,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 );
 
 let LocationCreateForm = (props) => {
-  const { handleSubmit, pristine, submitting, values, reset, initialValues } = props;
+  const { handleSubmit, pristine, submitting } = props;
   return (
     <form className="ui error form" onSubmit={handleSubmit}>
 
